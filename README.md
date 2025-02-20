@@ -36,6 +36,10 @@ This system is designed as a **fully custom-built module** for use in **supermar
 ## Collaboration
 I'm open to collaborating on projects that focus on **building and learning together**! If you're interested, feel free to connect with me.
 
+## Future enhancements - 
+- **Password Recovery using email**
+- **Late Payment Fees in case the daily payment is not paid**
+- **Use of API as of now everything works on local host only**
 ---
 ### 🚀 Let's build something awesome together!
 

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loan Management System</title>
+        <link rel="stylesheet" href="/public/style.css">
+    </head>
+    <body>
+        <div id="date">
+            <p>Date : <span id="todaysDate"></span> </p>
+        </div>
+
+        <br>
+        <h1>Loan Management System</h1>
+
+        <div class="menu">
+            <a href="" class="hover">Loans</a>
+            <a href="" class="hover">Payment</a>
+            <a id="custom-loan" class="hover">Custom Loan</a>
+            <a class="hover" href="/public/emi.html" target="_blank">EMI Calculator</a>
+            <div>
+                <button id="loan-consent-btn">
+                    <svg  id="consent" width="24" height="24" viewBox="0 0 24 24" fill="none" background-color="none"; xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4812 1.35132C11.0485 0.94523 9.57443 1.79771 9.18389 3.23081L6.34596 13.6446C5.96843 15.0299 6.73577 16.4805 8.10449 16.9239L16.43 19.6208C17.8926 20.0946 19.4369 19.2301 19.8274 17.7477L22.66 6.99522C23.0331 5.57859 22.214 4.10997 20.8014 3.70957L12.4812 1.35132ZM13.1628 6.26802C12.7585 6.17816 12.3579 6.43311 12.268 6.83746C12.1781 7.24181 12.4331 7.64245 12.8374 7.7323L17.3374 8.7323C17.7418 8.82216 18.1424 8.56721 18.2323 8.16286C18.3221 7.75851 18.0672 7.35788 17.6628 7.26802L13.1628 6.26802ZM12.1472 10.2647C11.7411 10.1835 11.3459 10.4469 11.2647 10.8531C11.1835 11.2592 11.4469 11.6544 11.8531 11.7356L14.3531 12.2356C14.7592 12.3168 15.1543 12.0534 15.2356 11.6472C15.3168 11.2411 15.0534 10.846 14.6472 10.7647L12.1472 10.2647Z" fill="#141B34"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.09882 9.73457C0.598096 7.82434 2.0659 6 4.01843 6H5.44831C6.00059 6 6.44831 6.44772 6.44831 7C6.44831 7.55228 6.00059 8 5.44831 8H4.01843C3.33492 8 2.87549 8.62482 3.03346 9.22745L5.92462 20.257C6.05789 20.7655 6.58999 21.0989 7.14142 20.9736L11.7796 19.9199C12.3181 19.7975 12.8539 20.1349 12.9763 20.6735C13.0986 21.212 12.7612 21.7478 12.2227 21.8702L7.58452 22.9239C6.00531 23.2827 4.40311 22.3402 3.98998 20.7642L1.09882 9.73457Z" fill="#141B34"/>
+                    </svg>
+                </button>
+            </div>
+
+            <button id="save-data" class="hover">save</button>
+
+            <div class="balance"> 
+                <div id="logo&userName">
+                    <button id="loginKarle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.25 22C2.25 17.0869 6.70071 13.25 12 13.25C17.2993 13.25 21.75 17.0869 21.75 22V22.75H2.25V22Z" fill="#141B34"/>
+                            <path d="M6.75 6.5C6.75 3.6005 9.1005 1.25 12 1.25C14.8995 1.25 17.25 3.6005 17.25 6.5C17.25 9.39949 14.8995 11.75 12 11.75C9.1005 11.75 6.75 9.39949 6.75 6.5Z" fill="#141B34"/>
+                        </svg>
+                    </button>
+                    <span id="userName"></span>
+                </div>
+                    
+                Balance<span>$<span id="paisa">00000</span> </span></div>
+            </div>
+        <div id="overlay"></div>
+
+
+        <!-- Popup -->
+        <div id="popup-container">
+            <div id="popup-header">
+              Loan Consent
+              <button id="popup-close">&times;</button>
+            </div>
+            <div id="popup-content">
+                <h2 class="two-heads">Rules and Regulations</h2>
+                <ul>
+                    <li><strong>Eligibility:</strong> Applicant must be at least 18 years old and provide a valid government-issued ID.</li>
+                    <li><strong>Loan Amount and Tenure:</strong> Minimum loan amount: $750. Maximum loan amount: $1,000,000. Loan tenure ranges between 5 and 45 days.</li>
+                    <li><strong>Interest Rates:</strong> 
+                        <ul type="circle">
+                            <li>Basic Loan: 0.01%</li>
+                            <li>Medium Loan: 0.02%</li>
+                            <li>Professional Loan: 0.025%</li>
+                            <li>Custom Loan: 0.05%</li>
+                        </ul>
+                    </li>
+                    <li><strong>Repayment Policy:</strong> Daily payments are mandatory. Late payments incur a fee of $19 per missed day.</li>
+                    <li><strong>Early Payoff:</strong> Loans can be repaid early, including the remaining principal and accrued interest.</li>
+                    <li><strong>Default Clause:</strong> Failure to repay within the loan term may result in additional fees or legal action.</li>
+                </ul>
+              
+                <br>
+
+                <h2 class="two-heads">Terms and Conditions</h2>
+                <ul>
+                    <li>By accepting this loan, the borrower agrees to the repayment schedule provided.</li>
+                    <li>Interest rates and loan terms are subject to change without prior notice.</li>
+                    <li>The lender reserves the right to approve or reject the loan application based on creditworthiness.</li>
+                    <li>All transactions are subject to the laws and regulations of the applicable jurisdiction.</li>
+                    <li>Borrower data will be used in compliance with privacy laws.</li>
+                </ul>
+          
+                <!-- <div id="agree-div"> <button id="agree-btn"> I Agree </button> </div> -->
+            </div>
+        </div>
+        <br>
+        <div class="Loans">
+            <div id="loan1" class="loan">
+                <section class="above">
+                    <div class="loan-type">Basic Loan</div>
+                    <div id = "details">
+                        <div class="money">$<span id="money">750</span></div>
+                        <hr>
+                        <div class="lines">
+                            <div class="col1">Daily Interest   <span class="ans" id="BL-Daily-Interest">  %0.01  </span> </div>
+                            <div class="col1">Return Payment   <span class="ans">  $<span id="BL-Return-Payment">787.50</span> </span> </div>
+                            <div class="col1">Daily Payment    <span class="ans">   $<span id="BL-Daily-Payment">157.50</span> </div>
+                            <div class="col1">Loan Term Length <span class="ans">   <span id="BL-Loan-Term-Length">5</span> Day  </span> </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="below">
+                    <div id="BL-amt-range">
+                        <input type="range" id="BL-points" class="points" name="points" min="5" max="25" value="0">
+                    </div>
+                    <button class="takeloan" id="BL-TakeLoan">Take Loan</button>
+                </section>
+            </div>
+
+            <div id="loan2" class="loan">
+                <section class="above">
+                    <div class="loan-type">Medium Loan</div>
+                    <div id = "details">
+                        <div class="money">$2000</div>
+                        <hr>
+                        <div class="lines">
+                            <div class="col1">Daily Interest   <span class="ans" id="ML-Daily-Interest">  %0.02  </span>                   </div>
+                            <div class="col1">Return Payment   <span class="ans">  $<span id="ML-Return-Payment"  >2200.00</span></span>   </div>
+                            <div class="col1">Daily Payment    <span class="ans">  $<span id="ML-Daily-Payment"   >440.00</span></span>    </div>
+                            <div class="col1">Loan Term Length <span class="ans">  <span  id="ML-Loan-Term-Length" >5</span> Day  </span>  </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="below">
+                    <div id="ML-amt-range">
+                        <input type="range" id="ML-points" class="points" name="points" min="5" max="25" value="0">
+                    </div>
+                    <button class="takeloan" id="ML-TakeLoan">Take Loan</button>
+                </section>
+            </div>
+            <div id="loan3" class="loan">
+                <section class="above">
+                    <div class="loan-type">Professional Loan</div>
+                    <div id = "details">
+                        <div class="money">$5000</div>
+                        <hr>
+                        <div class="lines">
+                            <div class="col1">Daily Interest   <span class="ans" id="PL-Daily-Interest">  %0.025  </span>                   </div>
+                            <div class="col1">Return Payment   <span class="ans">  $<span id="PL-Return-Payment"  >5625.00</span></span>   </div>
+                            <div class="col1">Daily Payment    <span class="ans">  $<span id="PL-Daily-Payment"   >1125.00</span></span>    </div>
+                            <div class="col1">Loan Term Length <span class="ans">  <span  id="PL-Loan-Term-Length" >5</span> Day  </span>  </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="below">
+                    <div id="PL-amt-range">
+                        <input type="range" id="PL-points" class="points" name="points" min="5" max="25" value="0">
+                    </div>
+                    <button class="takeloan"  id="PL-TakeLoan">Take Loan</button>
+                </section>
+            </div>
+
+            <div id="loan4" class="loan">
+                <section class="above">
+                    <div class="loan-type">Custom Loan</div>
+                    <div id = "details">
+                        <div class="money">$ <span id="CL-money">0</span> </div>
+                        <hr>
+                        <div class="lines">
+                            <div class="col1">Daily Interest   <span class="ans" id="CL-Daily-Interest">  0.05%  </span>                   </div>
+                            <div class="col1">Remaining Payment   <span class="ans">  $<span id="CL-Return-Payment"  >0.00</span></span>   </div>
+                            <div class="col1" id="gap-here">  -  <span class="ans">  <span id="CL-Daily-Payment"   ></span></span>    </div>
+                            <div class="col1">Early Pay Off Amount <span class="ans">  <span  id="CL-Loan-Term-Length" >5</span> Day  </span>  </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="below">
+                    <button  class="takeloan" id="PayOffEarly">Pay Off Early</button>
+                </section>
+            </div>
+        </div>
+
+        <hr>
+
+        <section class="payments">
+            <div id="payKar">
+                <header class="payments-head" id="payments-head">Payments</header>
+                <div id="msg">All Bills Are Paid</div>
+
+                <div id="dailyPaymentDetail">
+
+                    <!--FROM JS BOIIIIIIIII-->
+
+                </div>
+
+            </div>
+            <div id="loan-details">
+                <header class="payments-head">Loan Details</header>
+                <div>Loans taken        <span class="ans2"> <span id="Loans-taken">0</span> </span> </div>
+                <div>Payments Remaining <span class="ans2"> <span id="Payments-Remaining">0</span> </span> </div>
+                <div>Late Payment Fees  <span class="ans2">$<span id="Late-Payment-Fees">0</span> </span> </div>
+
+                <hr>
+
+                <div>Total Debt <span class="ans2">$<span id="total-debt">0</span> </span> </div>
+            </div>
+        </section>
+
+        <div id="popup" class="popup-container">
+            <div class="popup-content">
+                <span id="close-btn"> * </span>
+                <h2 id="cl">Custom Loan</h2>
+                Enter Amount : 
+                <input type="number" placeholder="in Dollars" id="custom-amt" min="5001" max="1000001">
+                <input type="range" id="custom-term" min="15" max="45" value = "0">
+                <div id="tenure"><div id="left">15 Days</div> <div id="right">45 Days</div> </div>
+                <br><br>
+                <div>Daily Interest : <span id="interest">0.85%</span> for <span id="loan-term">15</span> Days </div>
+                <br>
+                <button  class="takeloan" type="submit" id="CL-TakeLoan">Take Loan</button>
+                <br><br>
+                <div id="notes">Note : Amount should be greater than <i>$5000 and < 1m$</i> </div>
+            </div>
+        </div>
+        
+    
+        <script type="module" src="/public/app2.js"></script>
+    </body>
+</html>

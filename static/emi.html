@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="emi.css">
+</head>
+<body>
+    <h1 class="emi-calc-heading">EMI Calculator</h1>
+    <!-- <main>
+        <input type="range" class="win10-thumb" />
+        <input type="range" class="win10-thumb" min="0" max="100" value="25" step="5" />
+        <input type="range" min="0" max="100" value="40" step="5" />
+    </main> -->
+
+    <section class="container">
+        <div class="currencies-container">
+            <button id="rupees"  class="currencies"> 
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 3 24 24" width="24" height="24">
+                    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M20 6H10M20 11H10M10 6h2a5 5 0 0 1 5 5h0a5 5 0 0 1-5 5h-2l8 8" 
+                          class="colorStroke000 svgStroke">
+                    </path>
+                </svg>
+                
+             </button>
+            <button id="dollars" class="currencies"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/dollar-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
+                    <path d="M17.5 8.62963C17.5 6.62504 15.0376 5 12 5C8.96243 5 6.5 6.62504 6.5 8.62963C6.5 10.6342 8 11.7407 12 11.7407C16 11.7407 18 12.7778 18 15.3704C18 17.963 15.5 19 12 19C8.5 19 6 17.5 6 15.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M12 3V5M12 21V19" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+            </button>
+        </div>
+
+        <section class="three-sliders">
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Loan Amount:</span>
+                    <div class="slider-value"> <span id="num">10</span></div> 
+                </div>
+                <input class="slider-input" type="range" min="10" max="1000" value="10" id="loan-slider" steps="10000">
+            </div>
+        
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Interest Rate:</span>
+                    <div id="interest" class="slider-value">4 <span>%</span></div>
+                </div>
+                <input class="slider-input" type="range" min="4" max="16" value="4" id="interest-slider">
+            </div>
+        
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Tenure:</span>
+                    <div id="months" class="slider-value">12 <span>months</span></div>
+                </div>
+                <input class="slider-input" type="range" min="12" max="180" value="12" id="tenure-slider">
+            </div>
+
+            <div id="summary"> 
+                Loan Amount : <span id="loan-amount" class="tobeBold">0</span> |
+                Monthly Amount : <span id="monthly-repay" class="tobeBold">0</span> |
+                Repay Amount : <span id="total-repay" class="tobeBold">0</span>
+            </div>
+        </section>
+        
+    </section>
+
+    <script src="emi.js"></script>
+</body>
+</html>

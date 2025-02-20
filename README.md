@@ -40,6 +40,8 @@ Connect with me using my Server:
 - **Discord:** [Join Here](https://discord.gg/QqB8srq)
 - **LinkedIn:** [Meet Soni](www.linkedin.com/in/meet-soni-tenacious)
 
+## Reference - Supermarket Simulator game
+
 ## Future enhancements - 
 - **Password Recovery using email**
 - **Late Payment Fees in case the daily payment is not paid**

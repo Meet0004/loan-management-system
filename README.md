@@ -40,6 +40,9 @@ I'm open to collaborating on projects that focus on **building and learning toge
 - **Password Recovery using email**
 - **Late Payment Fees in case the daily payment is not paid**
 - **Use of API as of now everything works on local host only**
+- **Loan repayment trackig**
+- **TypeScript/GraphQL integration**
+- **Docker support**
 ---
 ### 🚀 Let's build something awesome together!
 

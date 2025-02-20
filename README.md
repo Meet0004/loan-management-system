@@ -38,3 +38,25 @@ I'm open to collaborating on projects that focus on **building and learning toge
 
 ---
 ### 🚀 Let's build something awesome together!
+
+## How to Run This Project
+1. Download the ZIP file and extract it.
+2. Open the project folder in **VS Code** or any IDE.
+3. Install npm packages:
+   ```sh
+   npm i node-modules
+   ```
+4. Install required dependencies:
+   ```sh
+   npm i mongoose express path nodemon
+   ```
+5. Open the terminal in the project folder (`Ctrl + \`` in VS Code).
+6. Run the server:
+   ```sh
+   npx nodemon .\server.js
+   ```
+7. Click the **localhost:7700** link and use the application.
+
+**Troubleshooting:**
+- Ensure MongoDB URL is correctly set.
+- Verify all required node modules are installed.

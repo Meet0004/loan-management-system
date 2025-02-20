@@ -36,11 +36,15 @@ This system is designed as a **fully custom-built module** for use in **supermar
 ## Collaboration
 I'm open to collaborating on projects that focus on **building and learning together**! If you're interested, feel free to connect with me.
 
+Connect with me using my Server:
+- **Discord:** [Join Here](https://discord.gg/QqB8srq)
+- **LinkedIn:** [Meet Soni](www.linkedin.com/in/meet-soni-tenacious)
+
 ## Future enhancements - 
 - **Password Recovery using email**
 - **Late Payment Fees in case the daily payment is not paid**
 - **Use of API as of now everything works on local host only**
-- **Loan repayment trackig**
+- **Loan repayment tracking**
 - **TypeScript/GraphQL integration**
 - **Docker support**
 ---

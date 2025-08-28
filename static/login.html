@@ -1,178 +1,102 @@
-var inP = $(".input-field"); // Ensure this is a jQuery object
-
-inP
-  .on("blur", function () {
-    if (!this.value) {
-      $(this).parent(".f_row").removeClass("focus");
-    } else {
-      $(this).parent(".f_row").addClass("focus");
-    }
-  })
-  .on("focus", function () {
-    $(this).parent(".f_row").addClass("focus");
-    $(".btn").removeClass("active");
-    $(".f_row").removeClass("shake");
-  });
-
-$(".resetTag").click(function (e) {
-  e.preventDefault();
-  $(".formBox").addClass("level-forget").removeClass("level-reg");
-});
-
-$(".back").click(function (e) {
-  e.preventDefault();
-  $(".formBox").removeClass("level-forget").addClass("level-login");
-});
-
-$(".regTag").click(function (e) {
-  e.preventDefault();
-  $(".formBox").removeClass("level-reg-revers");
-  $(".formBox").toggleClass("level-login").toggleClass("level-reg");
-  if (!$(".formBox").hasClass("level-reg")) {
-    $(".formBox").addClass("level-reg-revers");
-  }
-});
-
-$("#go").each(function () {
-  $(this).on("click", function (e) {
-    e.preventDefault();
-
-    var finp = $(this).parent("form").find("input");
-
-    console.log(finp.html());
-
-    if (!finp.val() == 0) {
-      $(this).addClass("active");
-    }
-
-    setTimeout(function () {
-      inP.val("");
-
-      $(".f_row").removeClass("shake focus");
-      $("#go").removeClass("active");
-    }, 2000);
-
-    if (inP.val() == 0) {
-      inP.parent(".f_row").addClass("shake");
-    }
-  });
-});
-
-document.querySelector("#go").addEventListener("click",async (event) => {
-    event.preventDefault();
-
-    const username = document.getElementById('userName').value;  
-    const password = document.getElementById('password').value;
-
-    if ((!username || !password)) {
-        alert("Please enter both username and password!");
-        return;
-    }
-
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
-
-    console.log("Username:", username);
-    console.log("Password:", password);
-
-    // check karne ki username exists in RegisterUser collection
-    try {
-      const response = await fetch(`/check-username/${username}`);
-      const result = await response.json();
-
-      if (result.exists) {
-        // alert("Proceeding...");
-      } else {
-        alert("Username doesn't already exists. Please get Register.");
-        return;
-      }
-    } catch (error) {
-        alert("Error checking username. Please try again.");
-        console.error("Error:", error);
-    }
-
-    try {
-      const response = await fetch("/check-user", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password })
-      });
-
-      const result = await response.json();
-
-      if (result.valid) {
-          alert("Login successful! Proceeding...");
-          localStorage.setItem("username", username);
-          window.location.href = '/';
-      } else {
-          alert("Invalid username or password.");
-          return;
-      }
-      } catch (error) {
-        alert("Error checking credentials. Please try again.");
-        console.error("Error:", error);
-      }
-    //fetchUserData(username);
-    //redirect to a new URL
-    window.location.href = '/';
-});
-
-document.getElementById("next").addEventListener('click', async (event) => {
-    event.preventDefault();
-
-    const newUser = document.getElementById('newUserName').value;
-    const newPassword = document.getElementById('newPassword1').value;
-    const confirmPassword = document.getElementById('newPassword2').value;
-
-    if(newPassword !== confirmPassword){
-        alert("Passwords do not match!");
-        return;
-    }
-    if(!newUser || !newPassword || !confirmPassword){
-        alert("Please enter all fields!");
-        return;
-    }
-    try {
-        const response = await fetch(`/check-username/${newUser}`);
-        const result = await response.json();
-
-        if (result.exists) {
-            alert("Username already exists. Please choose another.");
-            return;
-        } else {
-            alert("Username is available! Proceeding...");
-            // document.getElementById("paisa").innerText = '50000';  // lol ye ni hoga
-        }
-    } catch (error) {
-        alert("Error checking username. Please try again.");
-        console.error("Error:", error); 
-    }
-
-    localStorage.setItem("username", newUser);
-    localStorage.setItem("password", newPassword);
-
-    console.log("Username:", newUser);
-    console.log("Password:", newPassword);
-
-    const response = await fetch('/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: newUser,
-          password: newPassword
-        })
-    });
-    await console.log('data sent')
-    const result = await response.json();
-    alert(result.message)
-    await console.log('Hogya?')
-
-    
-    $(".regTag").trigger("click");
-    setTimeout(() => {
-        $(".formBox").removeClass("level-reg").addClass("level-login level-reg-revers");
-    }, 100);
-    //window.location.href = 'http://localhost:7700';
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/login2.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="formBox level-login">
+          <div class="box boxShaddow"></div>
+          <div class="box loginBox">
+            <h2>LOGIN</h2>
+            <form class="form">
+              <div class="f_row">
+                <label>Username</label>
+                <input type="text" class="input-field" required id="userName">
+                <u></u>
+              </div>
+              <div class="f_row last">
+                <label>Password</label>
+                <input type="password" class="input-field" required id="password">
+                <u></u>
+              </div>
+              <button id="go"><span>GO</span><u></u>
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 415.582 415.582" xml:space="preserve">
+                  <path d="M411.47,96.426l-46.319-46.32c-5.482-5.482-14.371-5.482-19.853,0L152.348,243.058l-82.066-82.064
+                                            c-5.48-5.482-14.37-5.482-19.851,0l-46.319,46.32c-5.482,5.481-5.482,14.37,0,19.852l138.311,138.31
+                                            c2.741,2.742,6.334,4.112,9.926,4.112c3.593,0,7.186-1.37,9.926-4.112L411.47,116.277c2.633-2.632,4.111-6.203,4.111-9.925
+                                            C415.582,102.628,414.103,99.059,411.47,96.426z" />
+                </svg>
+              </button>
+              <div class="f_link">
+                <a href="" class="resetTag">Forgot your password?</a>
+              </div>
+            </form>
+          </div>
+          <div class="box forgetbox">
+            <a href="#" class="back icon-back">
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 199.404 199.404" style="enable-background:new 0 0 199.404 199.404;" xml:space="preserve">
+                <polygon points="199.404,81.529 74.742,81.529 127.987,28.285 99.701,0 0,99.702 99.701,199.404 127.987,171.119 74.742,117.876 
+              199.404,117.876 " />
+              </svg>
+            </a>
+            <h2>Reset Password</h2>
+            <form class="form">
+              <p>Please enter your valid Email Id and enter the 6 digit One-time-password</p>
+              <div class="f_row">
+                <label>Email Id</label>
+                <input type="text" class="input-field" required id="emailD">
+                <u></u>
+            </div>
+            <div class="f_row">
+                <label>OTP</label>
+                <input type="text" class="input-field" required id="otp">
+                <u></u>
+            </div>
+            
+              <button class="btn" id="reset"><span>Reset</span><u></u>
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 415.582 415.582" xml:space="preserve">
+                  <path d="M411.47,96.426l-46.319-46.32c-5.482-5.482-14.371-5.482-19.853,0L152.348,243.058l-82.066-82.064
+                                            c-5.48-5.482-14.37-5.482-19.851,0l-46.319,46.32c-5.482,5.481-5.482,14.37,0,19.852l138.311,138.31
+                                            c2.741,2.742,6.334,4.112,9.926,4.112c3.593,0,7.186-1.37,9.926-4.112L411.47,116.277c2.633-2.632,4.111-6.203,4.111-9.925
+                                            C415.582,102.628,414.103,99.059,411.47,96.426z" />
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="box registerBox">
+            <span class="reg_bg"></span>
+            <h2>Register</h2>
+            <form class="form">
+              <div class="f_row">
+                <label>Username</label>
+                <input type="text" class="input-field" required id="newUserName">
+                <u></u>
+              </div>
+              <div class="f_row">
+                <label>Password</label>
+                <input type="password" class="input-field" required id="newPassword1">
+                <u></u>
+              </div>
+              <div class="f_row last">
+                <label>Repeat Password</label>
+                <input type="password" class="input-field" required id="newPassword2">
+                <u></u>
+              </div>
+              <button class="btn-large" id="next">NEXT</button>
+            </form>
+          </div>
+          <a href="#" class="regTag icon-add">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;" xml:space="preserve">
+              <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <script src="/public/login.js"></script>
+</body>
+</html>

@@ -77,7 +77,7 @@ document.querySelector("#go").addEventListener("click",async (event) => {
 
     // check karne ki username exists in RegisterUser collection
     try {
-      const response = await fetch(`/check-username/${username}`);
+      const response = await fetch(`https://loan-management-system-vsy1.onrender.com/check-username/${username}`);
       const result = await response.json();
 
       if (result.exists) {
@@ -92,7 +92,7 @@ document.querySelector("#go").addEventListener("click",async (event) => {
     }
 
     try {
-      const response = await fetch("/check-user", {
+      const response = await fetch("https://loan-management-system-vsy1.onrender.com/check-user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password })
@@ -133,7 +133,7 @@ document.getElementById("next").addEventListener('click', async (event) => {
         return;
     }
     try {
-        const response = await fetch(`/check-username/${newUser}`);
+        const response = await fetch(`https://loan-management-system-vsy1.onrender.com/check-username/${newUser}`);
         const result = await response.json();
 
         if (result.exists) {
@@ -154,7 +154,7 @@ document.getElementById("next").addEventListener('click', async (event) => {
     console.log("Username:", newUser);
     console.log("Password:", newPassword);
 
-    const response = await fetch('/register', {
+    const response = await fetch('https://loan-management-system-vsy1.onrender.com/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

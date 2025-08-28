@@ -16,7 +16,8 @@ try {
 // Middleware
 app.use(express.json()); // Middleware to parse JSON
 app.use(express.urlencoded({ extended: false })); // Middleware to parse URL-encoded data
-app.use("/public", express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, "static")));
+
 
 // Routes
 app.get("/", (req, res) => {
@@ -221,3 +222,4 @@ app.listen(PORT, () => {
 });
 
 //module.exports = { fetchUserData };
+

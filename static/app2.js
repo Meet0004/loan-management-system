@@ -1,12 +1,10 @@
-// function updateDate() {
-//     document.getElementById('todaysDate').innerText = new Date().toLocaleString();
-// }
-// setInterval(updateDate, 1000);
-//const fetchUserData = require('../server.js');
+
 console.log('pohoch gaye')
-//import { fetchUserData } from '../server.js';
+
+
+const API_BASE_URL = window.location.origin;
 document.getElementById("loginKarle").addEventListener("click", (event) => {
-    window.location.href = '/login';
+    window.location.href = `${API_BASE_URL}/login`;
 });
 let konsaLoan;
 
@@ -17,7 +15,7 @@ function balance_update() {
 async function fetchAndDisplayUserData(username) {
     let tdp;
     try {
-        const response = await fetch(`/user/${username}`);
+        const response = await fetch(`${API_BASE_URL}/user/${username}`);
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }
@@ -224,7 +222,7 @@ if (username && password) {
         passwordTOBE: password,
     };
     // send POST request to the server
-    fetch('/send-data', {
+    fetch(`${API_BASE_URL}/send-data`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -1253,7 +1251,7 @@ document.getElementById('save-data').addEventListener('click', async () => {
     const balancia = parseFloat(document.getElementById('paisa').innerHTML).toFixed(2);
 
     // Send the data to the backend
-    const response = await fetch('/save-data', {
+    const response = await fetch(`${API_BASE_URL}/save-data`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -77,7 +77,7 @@ document.querySelector("#go").addEventListener("click",async (event) => {
 
     // check karne ki username exists in RegisterUser collection
     try {
-      const response = await fetch(`http://localhost:7700/check-username/${username}`);
+      const response = await fetch(`/check-username/${username}`);
       const result = await response.json();
 
       if (result.exists) {
@@ -92,7 +92,7 @@ document.querySelector("#go").addEventListener("click",async (event) => {
     }
 
     try {
-      const response = await fetch("http://localhost:7700/check-user", {
+      const response = await fetch("/check-user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password })
@@ -103,7 +103,7 @@ document.querySelector("#go").addEventListener("click",async (event) => {
       if (result.valid) {
           alert("Login successful! Proceeding...");
           localStorage.setItem("username", username);
-          window.location.href = 'http://localhost:7700';
+          window.location.href = '';
       } else {
           alert("Invalid username or password.");
           return;
@@ -114,7 +114,7 @@ document.querySelector("#go").addEventListener("click",async (event) => {
       }
     //fetchUserData(username);
     //redirect to a new URL
-    window.location.href = 'http://localhost:7700';
+    window.location.href = '';
 });
 
 document.getElementById("next").addEventListener('click', async (event) => {
@@ -133,7 +133,7 @@ document.getElementById("next").addEventListener('click', async (event) => {
         return;
     }
     try {
-        const response = await fetch(`http://localhost:7700/check-username/${newUser}`);
+        const response = await fetch(`/check-username/${newUser}`);
         const result = await response.json();
 
         if (result.exists) {
@@ -154,7 +154,7 @@ document.getElementById("next").addEventListener('click', async (event) => {
     console.log("Username:", newUser);
     console.log("Password:", newPassword);
 
-    const response = await fetch('http://localhost:7700/register', {
+    const response = await fetch('/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -174,5 +174,5 @@ document.getElementById("next").addEventListener('click', async (event) => {
     setTimeout(() => {
         $(".formBox").removeClass("level-reg").addClass("level-login level-reg-revers");
     }, 100);
-    //window.location.href = 'http://localhost:7700';
+
 });

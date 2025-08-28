@@ -16,7 +16,7 @@ try {
 // Middleware
 app.use(express.json()); // Middleware to parse JSON
 app.use(express.urlencoded({ extended: false })); // Middleware to parse URL-encoded data
-app.use(express.static(path.join(__dirname, "static")));
+app.use("/public", express.static(path.join(__dirname, "static")));
 
 // Routes
 app.get("/", (req, res) => {
@@ -48,12 +48,12 @@ app.post("/save-data", async (req, res) => {
         const existingUser = await User.findOne({ Customer: name });
 
         if (existingUser) {
-            console.log("-------------Exists-----------------");
+            console.log("-----------------Exists-----------------");
             await User.updateOne(
                 { Customer: name },
-                { Password: key},
                 {
                     $set: {
+                        Password: key,
                         Time_Of_Loan_Taken: new Date(time),
                         Loans_Taken: Loanstaken,
                         Loans_Taken_Value: parseFloat(konsaLoan),
@@ -64,8 +64,9 @@ app.post("/save-data", async (req, res) => {
                         Balance: parseFloat(balancia),
                     },
                 }
-            )
-        } else{
+            );
+
+        } else {
             //creating new user
             const newUser = new User({
                 Customer: name,
@@ -154,13 +155,13 @@ app.get('/user/:username', async (req, res) => {
 
 app.post('/send-data', (req, res) => {
     // destructure the correct keys from req.body
-    const { usernameTOBE, passwordTOBE } = req.body;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    const { usernameTOBE, passwordTOBE } = req.body;
 
     console.log('Data received:', req.body);
     console.log('Username:', usernameTOBE);
     console.log('Password:', passwordTOBE);
 
-    if(usernameTOBE && passwordTOBE){
+    if (usernameTOBE && passwordTOBE) {
         fetchUserData(usernameTOBE)
     }
     // response back to the client
@@ -213,7 +214,8 @@ app.post("/register", async (req, res) => {
         res.status(500).json({ message: "Server error, try again!" });
     }
 });
-const PORT = process.env.PORT || 7700;
+
+const PORT = 7700;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

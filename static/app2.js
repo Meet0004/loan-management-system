@@ -6,7 +6,7 @@
 console.log('pohoch gaye')
 //import { fetchUserData } from '../server.js';
 document.getElementById("loginKarle").addEventListener("click", (event) => {
-    window.location.href = 'http://localhost:7700/login';
+    window.location.href = '/login';
 });
 let konsaLoan;
 
@@ -17,7 +17,7 @@ function balance_update() {
 async function fetchAndDisplayUserData(username) {
     let tdp;
     try {
-        const response = await fetch(`http://localhost:7700/user/${username}`);
+        const response = await fetch(`/user/${username}`);
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }
@@ -224,7 +224,7 @@ if (username && password) {
         passwordTOBE: password,
     };
     // send POST request to the server
-    fetch('http://localhost:7700/send-data', {
+    fetch('/send-data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -80,9 +80,9 @@ document.querySelector("#go").addEventListener("click", async (event) => {
   console.log("Username:", username);
   console.log("Password:", password);
 
-  // Check if username exists - using relative URL
+  // Check if username exists - using API_BASE_URL
   try {
-    const response = await fetch(`/check-username/${username}`);
+    const response = await fetch(`${API_BASE_URL}/check-username/${username}`);
     const result = await response.json();
 
     if (result.exists) {
@@ -96,9 +96,9 @@ document.querySelector("#go").addEventListener("click", async (event) => {
     console.error("Error:", error);
   }
 
-  // Check user credentials - using relative URL
+  // Check user credentials - using API_BASE_URL
   try {
-    const response = await fetch("/check-user", {
+    const response = await fetch(`${API_BASE_URL}/check-user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password })
@@ -138,9 +138,9 @@ document.getElementById("next").addEventListener('click', async (event) => {
     return;
   }
   
-  // Check if username exists - using relative URL
+  // Check if username exists - using API_BASE_URL
   try {
-    const response = await fetch(`/check-username/${newUser}`);
+    const response = await fetch(`${API_BASE_URL}/check-username/${newUser}`);
     const result = await response.json();
 
     if (result.exists) {
@@ -158,9 +158,9 @@ document.getElementById("next").addEventListener('click', async (event) => {
   console.log("Username:", newUser);
   console.log("Password:", newPassword);
 
-  // Register user - using relative URL
+  // Register user - using API_BASE_URL
   try {
-    const response = await fetch('/register', {
+    const response = await fetch(`${API_BASE_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -215,9 +215,10 @@ app.post("/register", async (req, res) => {
 });
 
 
-const PORT = 7700;
+const PORT = 8800;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 
 //module.exports = { fetchUserData };
+

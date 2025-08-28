@@ -6,7 +6,7 @@
 console.log('pohoch gaye')
 //import { fetchUserData } from '../server.js';
 document.getElementById("loginKarle").addEventListener("click", (event) => {
-    window.location.href = '/login';
+    window.location.href = 'https://loan-management-system-vsy1.onrender.com/login';
 });
 let konsaLoan;
 
@@ -17,7 +17,7 @@ function balance_update() {
 async function fetchAndDisplayUserData(username) {
     let tdp;
     try {
-        const response = await fetch(`/user/${username}`);
+        const response = await fetch(`https://loan-management-system-vsy1.onrender.com/user/${username}`);
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }
@@ -224,7 +224,7 @@ if (username && password) {
         passwordTOBE: password,
     };
     // send POST request to the server
-    fetch('/send-data', {
+    fetch('https://loan-management-system-vsy1.onrender.com/send-data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -1253,7 +1253,7 @@ document.getElementById('save-data').addEventListener('click', async () => {
     const balancia = parseFloat(document.getElementById('paisa').innerHTML).toFixed(2);
 
     // Send the data to the backend
-    const response = await fetch('/save-data', {
+    const response = await fetch('https://loan-management-system-vsy1.onrender.com/save-data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

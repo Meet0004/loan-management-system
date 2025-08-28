@@ -23,11 +23,11 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static", "index.html"));
 });
 
-app.get("/login", (req, res) => {
+app.get("https://loan-management-system-vsy1.onrender.com/login", (req, res) => {
     res.sendFile(path.join(__dirname, "static", "login.html"));
 });
 
-app.post("/save-data", async (req, res) => {
+app.post("https://loan-management-system-vsy1.onrender.com/save-data", async (req, res) => {
     try {
         const {
             name,
@@ -127,7 +127,7 @@ const fetchUserData = async (username) => {
 
 //fetchUserData("Meet-Soni");
 
-app.get('/user/:username', async (req, res) => {
+app.get('https://loan-management-system-vsy1.onrender.com/user/:username', async (req, res) => {
     const username = req.params.username;
     try {
         const userData = await User.findOne({ Customer: username });
@@ -152,7 +152,7 @@ app.get('/user/:username', async (req, res) => {
     }
 });
 
-app.post('/send-data', (req, res) => {
+app.post('https://loan-management-system-vsy1.onrender.com/send-data', (req, res) => {
     // destructure the correct keys from req.body
     const { usernameTOBE, passwordTOBE } = req.body;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 
@@ -167,13 +167,13 @@ app.post('/send-data', (req, res) => {
     res.send('Data received and separated successfully!');
 });
 
-app.get("/check-username/:username", async (req, res) => {
+app.get("https://loan-management-system-vsy1.onrender.com/check-username/:username", async (req, res) => {
     const { username } = req.params;
     const user = await RegisterUser.findOne({ Customer: username });
     res.json({ exists: !!user });
 });
 
-app.post("/check-user", async (req, res) => {
+app.post("https://loan-management-system-vsy1.onrender.com/check-user", async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await RegisterUser.findOne({ Customer: username });
@@ -189,7 +189,7 @@ app.post("/check-user", async (req, res) => {
     }
 });
 
-app.post("/register", async (req, res) => {
+app.post("https://loan-management-system-vsy1.onrender.com/register", async (req, res) => {
     try {
         const { username, password } = req.body;
 
@@ -214,11 +214,11 @@ app.post("/register", async (req, res) => {
     }
 });
 
+console.log("https://loan-management-system-vsy1.onrender.com")
 
-const PORT = 8800;
+const PORT = 7700;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-
+//.
 //module.exports = { fetchUserData };
-

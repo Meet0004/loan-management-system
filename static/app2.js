@@ -4,6 +4,16 @@
 // setInterval(updateDate, 1000);
 //const fetchUserData = require('../server.js');
 console.log('pohoch gaye')
+
+
+function setLoginName() {
+  let loginNameEl = document.getElementById("loginName");
+  let userNameEl = document.getElementById("userName");
+  let userName = userNameEl.textContent.trim();
+  if (!userName) loginNameEl.textContent = "Login";
+}
+setInterval(setLoginName, 1000);
+
 //import { fetchUserData } from '../server.js';
 document.getElementById("loginKarle").addEventListener("click", (event) => {
     window.location.href = '/login';
@@ -1299,3 +1309,4 @@ overlay.addEventListener('click', () => {
     // popup.style.display = 'none';
     // overlay.style.display = 'none';
 // });
+
